@@ -23,7 +23,7 @@ export const PRODUCTS: Product[] = [
   // 1. iPhone 17 Pro Max (MỚI THÊM - Thông tin chính xác từ CellphoneS)
   {
     id: 'ip-17-pro-max',
-    name: 'iPhone 17 Pro Max 256GB (Chuẩn Zin 99%)',
+    name: 'iPhone 17 Pro Max 256GB (Like New 99%)',
     category: 'iphone',
     series: '17',
     price: 30500000,
@@ -46,7 +46,7 @@ export const PRODUCTS: Product[] = [
       'Màn hình 6.9" Super Retina XDR ProMotion 120Hz chống phản chiếu, độ sáng đỉnh 3000 nits',
       'Camera selfie 18MP Center Stage khẩu độ ƒ/1.9 linh hoạt tự động căn chỉnh góc chụp',
       'Pin xem video liên tục lên đến 37 giờ (+8 tiếng so với thế hệ trước), sạc nhanh 50% trong 20 phút',
-      'Cam kết 100% hàng chuẩn zin nguyên bản 99% đền 100% tiền nếu phát hiện thay vỏ/ép kính'
+      'Cam kết 100% hàng Chuẩn Zin nguyên bản 99% đền 100% tiền nếu phát hiện thay vỏ/ép kính'
     ],
     colors: [
       {
@@ -94,7 +94,7 @@ export const PRODUCTS: Product[] = [
   // 2. iPhone 16 Pro Max
   {
     id: 'ip-16-pro-max',
-    name: 'iPhone 16 Pro Max 256GB (Chuẩn Zin 99%)',
+    name: 'iPhone 16 Pro Max 256GB (Like New 99%)',
     category: 'iphone',
     series: '16',
     price: 23950000,
@@ -106,35 +106,32 @@ export const PRODUCTS: Product[] = [
     isHot: true,
     isNew: true,
     inStock: true,
-    badge: 'HOT - Hàng Chuẩn Zin',
+    badge: 'HOT - Like New 99%',
     description: 'iPhone 16 Pro Max siêu phẩm màn hình 6.9 inch viền mỏng nhất lịch sử Apple. Viền Titan chuẩn hàng không vũ trụ, chip A18 Pro hỗ trợ Apple Intelligence đột phá cùng cụm camera 48MP zoom quang 5x chuyên nghiệp.',
     highlights: [
       'Màn hình 6.9 inch OLED Super Retina XDR 120Hz viền mỏng nhất từ trước đến nay',
       'Nút điều khiển camera Camera Control cảm ứng lực nhấn chụp ảnh quay video tức thì',
       'Khung viền Titan sa mạc đẳng cấp bền bỉ, nhẹ hơn và tản nhiệt tối ưu',
-      'Cam kết 100% máy chuẩn zin nguyên bản chưa qua sửa chữa hay thay thế vỏ/kính'
+      'Cam kết 100% máy Chuẩn Zin nguyên bản chưa qua sửa chữa hay thay thế vỏ/kính'
     ],
     colors: [
       {
         name: 'Titan Sa Mạc (Desert Titanium)',
         code: '#c2a88f',
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-        gallery: [
-          'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop'
-        ]
+        image: '/images/products/ip-16-pro-max/main.jpg',
+        gallery: ['/images/products/ip-16-pro-max/main.jpg']
       },
       {
         name: 'Titan Tự Nhiên (Natural Titanium)',
         code: '#9f9d96',
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-16-pro-max/main.jpg',
+        gallery: ['/images/products/ip-16-pro-max/main.jpg']
       },
       {
         name: 'Titan Đen (Black Titanium)',
         code: '#3b3b3d',
-        image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-16-pro-max/main.jpg',
+        gallery: ['/images/products/ip-16-pro-max/main.jpg']
       }
     ],
     specs: {
@@ -152,7 +149,7 @@ export const PRODUCTS: Product[] = [
   // 3. iPhone 15 Pro Max
   {
     id: 'ip-15-pro-max',
-    name: 'iPhone 15 Pro Max 256GB (Chuẩn Zin 99%)',
+    name: 'iPhone 15 Pro Max 256GB (Like New 99%)',
     category: 'iphone',
     series: '15',
     price: 17400000,
@@ -175,20 +172,20 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Titan Tự Nhiên',
         code: '#9f9d96',
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-15-pro-max/main.jpg',
+        gallery: ['/images/products/ip-15-pro-max/main.jpg']
       },
       {
         name: 'Titan Xanh (Blue)',
         code: '#2c3b4e',
-        image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-15-pro-max/main.jpg',
+        gallery: ['/images/products/ip-15-pro-max/main.jpg']
       },
       {
         name: 'Titan Đen',
         code: '#3b3b3d',
-        image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-15-pro-max/main.jpg',
+        gallery: ['/images/products/ip-15-pro-max/main.jpg']
       }
     ],
     specs: {
@@ -203,7 +200,7 @@ export const PRODUCTS: Product[] = [
   // 4. iPhone 15 Pro
   {
     id: 'ip-15-pro',
-    name: 'iPhone 15 Pro 256GB (Chuẩn Zin 99%)',
+    name: 'iPhone 15 Pro 256GB (Like New 99%)',
     category: 'iphone',
     series: '15',
     price: 15400000,
@@ -225,14 +222,14 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Titan Tự Nhiên',
         code: '#9f9d96',
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-15-pro/main.jpg',
+        gallery: ['/images/products/ip-15-pro/main.jpg']
       },
       {
         name: 'Titan Đen',
         code: '#3b3b3d',
-        image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-15-pro/main.jpg',
+        gallery: ['/images/products/ip-15-pro/main.jpg']
       }
     ],
     specs: {
@@ -246,7 +243,7 @@ export const PRODUCTS: Product[] = [
   // 5. iPhone 14 Pro Max
   {
     id: 'ip-14-pro-max',
-    name: 'iPhone 14 Pro Max (Chuẩn Zin 99%)',
+    name: 'iPhone 14 Pro Max (Like New 99%)',
     category: 'iphone',
     series: '14',
     price: 13800000,
@@ -269,20 +266,20 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Tím Deep Purple',
         code: '#4b3b55',
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-14-pro-max/main.jpg',
+        gallery: ['/images/products/ip-14-pro-max/main.jpg']
       },
       {
         name: 'Vàng Gold',
         code: '#f2e3c6',
-        image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-14-pro-max/main.jpg',
+        gallery: ['/images/products/ip-14-pro-max/main.jpg']
       },
       {
         name: 'Đen Space Black',
         code: '#1f1f21',
-        image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-14-pro-max/main.jpg',
+        gallery: ['/images/products/ip-14-pro-max/main.jpg']
       }
     ],
     specs: {
@@ -297,7 +294,7 @@ export const PRODUCTS: Product[] = [
   // 6. iPhone 14 Pro
   {
     id: 'ip-14-pro',
-    name: 'iPhone 14 Pro (Chuẩn Zin 99%)',
+    name: 'iPhone 14 Pro (Like New 99%)',
     category: 'iphone',
     series: '14',
     price: 12500000,
@@ -319,14 +316,14 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Tím Deep Purple',
         code: '#4b3b55',
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-14-pro/main.jpg',
+        gallery: ['/images/products/ip-14-pro/main.jpg']
       },
       {
         name: 'Vàng Gold',
         code: '#f2e3c6',
-        image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-14-pro/main.jpg',
+        gallery: ['/images/products/ip-14-pro/main.jpg']
       }
     ],
     specs: {
@@ -340,7 +337,7 @@ export const PRODUCTS: Product[] = [
   // 7. iPhone 14 Plus
   {
     id: 'ip-14-plus',
-    name: 'iPhone 14 Plus 128GB (Chuẩn Zin 99%)',
+    name: 'iPhone 14 Plus 128GB (Like New 99%)',
     category: 'iphone',
     series: '14',
     price: 9850000,
@@ -361,14 +358,14 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Xanh Blue',
         code: '#a0c4ff',
-        image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-14-plus/main.jpg',
+        gallery: ['/images/products/ip-14-plus/main.jpg']
       },
       {
         name: 'Tím Purple',
         code: '#c8b6ff',
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-14-plus/main.jpg',
+        gallery: ['/images/products/ip-14-plus/main.jpg']
       }
     ],
     specs: {
@@ -382,7 +379,7 @@ export const PRODUCTS: Product[] = [
   // 8. iPhone 13
   {
     id: 'ip-13-128gb',
-    name: 'iPhone 13 128GB (Chuẩn Zin 99%)',
+    name: 'iPhone 13 128GB (Like New 99%)',
     category: 'iphone',
     series: '13',
     price: 8200000,
@@ -403,14 +400,14 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Trắng Starlight',
         code: '#f0ebd8',
-        image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-13/main.jpg',
+        gallery: ['/images/products/ip-13/main.jpg']
       },
       {
         name: 'Hồng Pink',
         code: '#f4c7d0',
-        image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-13/main.jpg',
+        gallery: ['/images/products/ip-13/main.jpg']
       }
     ],
     specs: {
@@ -424,7 +421,7 @@ export const PRODUCTS: Product[] = [
   // 9. iPhone 12 Pro Max
   {
     id: 'ip-12-pro-max',
-    name: 'iPhone 12 Pro Max (Chuẩn Zin 99%)',
+    name: 'iPhone 12 Pro Max (Like New 99%)',
     category: 'iphone',
     series: 'other',
     price: 9500000,
@@ -447,14 +444,14 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Xanh Pacific Blue',
         code: '#2c3e50',
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-12-pro-max/main.jpg',
+        gallery: ['/images/products/ip-12-pro-max/main.jpg']
       },
       {
         name: 'Vàng Gold',
         code: '#f2e3c6',
-        image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-12-pro-max/main.jpg',
+        gallery: ['/images/products/ip-12-pro-max/main.jpg']
       }
     ],
     specs: {
@@ -468,7 +465,7 @@ export const PRODUCTS: Product[] = [
   // 10. iPhone 12 Pro
   {
     id: 'ip-12-pro',
-    name: 'iPhone 12 Pro (Chuẩn Zin 99%)',
+    name: 'iPhone 12 Pro (Like New 99%)',
     category: 'iphone',
     series: 'other',
     price: 7900000,
@@ -490,14 +487,14 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Xanh Pacific Blue',
         code: '#2c3e50',
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-12-pro-max/main.jpg',
+        gallery: ['/images/products/ip-12-pro-max/main.jpg']
       },
       {
         name: 'Xám Space',
         code: '#3b3b3d',
-        image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-12-pro-max/main.jpg',
+        gallery: ['/images/products/ip-12-pro-max/main.jpg']
       }
     ],
     specs: {
@@ -511,7 +508,7 @@ export const PRODUCTS: Product[] = [
   // 11. iPhone 12
   {
     id: 'ip-12-128gb',
-    name: 'iPhone 12 128GB (Chuẩn Zin 99%)',
+    name: 'iPhone 12 128GB (Like New 99%)',
     category: 'iphone',
     series: 'other',
     price: 6500000,
@@ -532,14 +529,14 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Đen Black',
         code: '#222222',
-        image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-12/main.jpg',
+        gallery: ['/images/products/ip-12/main.jpg']
       },
       {
         name: 'Trắng White',
         code: '#ffffff',
-        image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-12/main.jpg',
+        gallery: ['/images/products/ip-12/main.jpg']
       }
     ],
     specs: {
@@ -552,7 +549,7 @@ export const PRODUCTS: Product[] = [
   // 12. iPhone 11 Pro Max
   {
     id: 'ip-11-pro-max',
-    name: 'iPhone 11 Pro Max (Chuẩn Zin 99%)',
+    name: 'iPhone 11 Pro Max (Like New 99%)',
     category: 'iphone',
     series: 'other',
     price: 7200000,
@@ -575,14 +572,14 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Xanh Midnight Green',
         code: '#4e5d52',
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-11/main.jpg',
+        gallery: ['/images/products/ip-11/main.jpg']
       },
       {
         name: 'Vàng Gold',
         code: '#f2e3c6',
-        image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-11/main.jpg',
+        gallery: ['/images/products/ip-11/main.jpg']
       }
     ],
     specs: {
@@ -596,7 +593,7 @@ export const PRODUCTS: Product[] = [
   // 13. iPhone 11
   {
     id: 'ip-11-128gb',
-    name: 'iPhone 11 128GB (Chuẩn Zin 99%)',
+    name: 'iPhone 11 128GB (Like New 99%)',
     category: 'iphone',
     series: 'other',
     price: 5200000,
@@ -618,14 +615,14 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Tím Purple',
         code: '#d8b4e2',
-        image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-11/main.jpg',
+        gallery: ['/images/products/ip-11/main.jpg']
       },
       {
         name: 'Trắng White',
         code: '#ffffff',
-        image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop',
-        gallery: ['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop']
+        image: '/images/products/ip-11/main.jpg',
+        gallery: ['/images/products/ip-11/main.jpg']
       }
     ],
     specs: {

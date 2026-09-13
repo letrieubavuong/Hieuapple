@@ -97,20 +97,24 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         )}
       </div>
 
-      {/* Main Image: Exact Model Vector Render for iPhones, SVG/Img for accessories */}
-      <div className="relative w-full h-56 sm:h-60 my-2 rounded-2xl overflow-hidden bg-black/30 flex items-center justify-center group-hover:scale-102 transition-transform p-2">
-        {product.category === 'iphone' ? (
+      {/* Main Image: Real High-Res Product Photo from reputable sources */}
+      <div className="relative w-full h-56 sm:h-60 my-2 rounded-2xl overflow-hidden bg-white/5 flex items-center justify-center group-hover:scale-102 transition-transform p-2">
+        {selectedColor.image ? (
+          <img
+            src={selectedColor.image}
+            alt={product.name}
+            className="h-full w-full object-contain p-2 transition-transform duration-500 group-hover:scale-105 drop-shadow-md"
+            onError={(e) => {
+              // Graceful fallback to SVG render
+              (e.currentTarget as HTMLElement).style.display = 'none';
+            }}
+          />
+        ) : (
           <IPhoneImage
             modelId={product.id}
             colorName={selectedColor.name}
             colorCode={selectedColor.code}
             className="w-full h-full"
-          />
-        ) : (
-          <img
-            src={selectedColor.image}
-            alt={product.name}
-            className="h-full w-full object-contain p-2 transition-transform duration-500 group-hover:scale-105"
           />
         )}
         

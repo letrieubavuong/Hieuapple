@@ -83,7 +83,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             {/* Color Select Buttons */}
             <div className="space-y-2 pt-2">
               <label className="text-sm font-bold text-gray-200 block">
-                Chọn Màu Sắc Máy Chuẩn Zin:
+                Chọn Màu Sắc Máy (Like New 99%):
               </label>
               <div className="flex flex-wrap gap-2">
                 {product.colors.map((col, idx) => (

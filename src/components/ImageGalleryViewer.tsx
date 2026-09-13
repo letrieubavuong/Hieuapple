@@ -46,7 +46,7 @@ export const ImageGalleryViewer: React.FC<ImageGalleryViewerProps> = ({
     if (view === 'side' && gallery[1]) {
       return gallery[1];
     }
-    return null;
+    return selectedColor.image || gallery[0] || product.colors[0]?.image || null;
   };
 
   const currentRealImage = getRealImageForView(activeView);

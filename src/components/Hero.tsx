@@ -104,9 +104,9 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               <div className="relative group cursor-pointer my-3" onClick={() => onNavigate('iphone')}>
                 <div className="w-full h-64 sm:h-72 rounded-2xl overflow-hidden relative">
                   <img
-                    src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=1000&auto=format&fit=crop"
-                    alt="iPhone 16 Pro Max 256GB Chuẩn Zin"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    src="/images/products/ip-16-pro-max/main.jpg"
+                    alt="iPhone 16 Pro Max 256GB Like New 99%"
+                    className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-700 bg-black/40"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0b0c10] via-transparent to-transparent opacity-80" />
                 </div>
@@ -115,7 +115,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 <div className="absolute bottom-4 left-4 right-4 glass-panel p-3 rounded-xl border border-white/15 flex items-center justify-between">
                   <div>
                     <h3 className="font-bold text-white text-base sm:text-lg">iPhone 16 Pro Max 256GB</h3>
-                    <p className="text-xs text-emerald-400 font-semibold">Chuẩn Zin 99% - Titan Sa Mạc</p>
+                    <p className="text-xs text-emerald-400 font-semibold">Like New 99% - Titan Sa Mạc</p>
                   </div>
                   <div className="text-right">
                     <span className="text-xs text-gray-400 line-through block">25.950.000đ</span>
