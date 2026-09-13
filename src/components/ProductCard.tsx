@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ShoppingCart, Zap, Eye, CheckCircle2 } from 'lucide-react';
 import { Product, ProductColor, StoragePriceOption } from '../types';
+import { IPhoneImage } from './IPhoneImage';
 
 interface ProductCardProps {
   product: Product;
@@ -35,7 +36,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   );
   const [addedToast, setAddedToast] = useState(false);
 
-  // Dynamic Price
+  // Dynamic Price Calculation
   const currentPrice = selectedStorageOpt ? selectedStorageOpt.price : product.price;
   const currentOriginalPrice = selectedStorageOpt ? selectedStorageOpt.originalPrice : product.originalPrice;
 
@@ -96,13 +97,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         )}
       </div>
 
-      {/* Main Image */}
-      <div className="relative w-full h-48 sm:h-52 my-3 rounded-2xl overflow-hidden bg-black/25 flex items-center justify-center group-hover:scale-102 transition-transform">
-        <img
-          src={selectedColor.image}
-          alt={product.name}
-          className="h-full w-full object-contain p-2 transition-transform duration-500 group-hover:scale-105"
-        />
+      {/* Main Image: Exact Model Vector Render for iPhones, SVG/Img for accessories */}
+      <div className="relative w-full h-56 sm:h-60 my-2 rounded-2xl overflow-hidden bg-black/30 flex items-center justify-center group-hover:scale-102 transition-transform p-2">
+        {product.category === 'iphone' ? (
+          <IPhoneImage
+            modelId={product.id}
+            colorName={selectedColor.name}
+            colorCode={selectedColor.code}
+            className="w-full h-full"
+          />
+        ) : (
+          <img
+            src={selectedColor.image}
+            alt={product.name}
+            className="h-full w-full object-contain p-2 transition-transform duration-500 group-hover:scale-105"
+          />
+        )}
         
         {/* Hover Quick View Overlay */}
         <button
@@ -110,10 +120,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             e.stopPropagation();
             onQuickView(product);
           }}
-          className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-xs flex items-center justify-center gap-2 text-xs font-bold text-white transition-opacity duration-300"
+          className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 backdrop-blur-xs flex items-center justify-center gap-2 text-xs sm:text-sm font-bold text-white transition-opacity duration-300"
         >
           <Eye className="w-4 h-4 text-blue-400" />
-          <span>Xem Chi Tiết</span>
+          <span>Xem Chi Tiết & Ảnh Đa Góc</span>
         </button>
       </div>
 
@@ -123,7 +133,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {/* Storage Buttons Selector (Dynamic Price Change) */}
         {product.storageOptions && (
           <div className="space-y-1">
-            <span className="text-[11px] text-gray-400 font-semibold block text-center">Dung lượng bộ nhớ:</span>
+            <span className="text-[11px] text-gray-400 font-semibold block text-center">Chọn dung lượng bộ nhớ:</span>
             <div className="flex items-center justify-center gap-1.5 flex-wrap">
               {product.storageOptions.map((st) => (
                 <button
@@ -186,7 +196,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             )}
           </div>
           <p className="text-xs text-emerald-400 font-semibold">
-            ✓ Trả góp 0% • Bảo hành 12 Tháng
+            ✓ Trả góp 0% • Bao test lỗi 1 đổi 1 3 tháng
           </p>
         </div>
       </div>

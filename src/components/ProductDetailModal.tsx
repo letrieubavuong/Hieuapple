@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { X, ShoppingCart, Zap, ShieldCheck, Truck, RotateCcw, Sparkles, Check, ChevronLeft, ChevronRight, Eye } from 'lucide-react';
+import { X, ShoppingCart, Zap, ShieldCheck, Truck, RotateCcw, Sparkles, Check, Eye } from 'lucide-react';
 import { Product, ProductColor, StoragePriceOption } from '../types';
+import { IPhoneImage } from './IPhoneImage';
 
 interface ProductDetailModalProps {
   product: Product | null;
@@ -34,22 +35,21 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
     product.storageOptions ? product.storageOptions[0] : undefined
   );
 
-  // Active Gallery Image
-  const [activeImage, setActiveImage] = useState<string>(product.colors[0].image);
+  // Active Gallery Image index or type
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState<number>(0);
 
   useEffect(() => {
     if (product) {
       const defaultCol = product.colors[0];
       setSelectedColor(defaultCol);
-      setActiveImage(defaultCol.image);
+      setActiveGalleryIndex(0);
       setSelectedStorageOpt(product.storageOptions ? product.storageOptions[0] : undefined);
     }
   }, [product]);
 
-  // When color changes, update active image to the new color's main image
   const handleColorSelect = (col: ProductColor) => {
     setSelectedColor(col);
-    setActiveImage(col.image);
+    setActiveGalleryIndex(0);
   };
 
   const galleryList = selectedColor.gallery && selectedColor.gallery.length > 0
@@ -84,48 +84,36 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         {/* Modal Scrollable Body */}
         <div className="overflow-y-auto p-5 sm:p-8 grid md:grid-cols-12 gap-6 sm:gap-8">
           
-          {/* Left Column - Multi-Angle Gallery Viewer & Color Select */}
+          {/* Left Column - Model Accurate Render & Color Select */}
           <div className="md:col-span-6 flex flex-col space-y-4">
             
             {/* Main Stage Image */}
-            <div className="relative w-full h-72 sm:h-96 rounded-2xl bg-black/50 p-4 flex items-center justify-center overflow-hidden border border-white/10 group">
-              <img
-                src={activeImage}
-                alt={product.name}
-                className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105"
-              />
-              <span className="absolute bottom-3 left-3 px-3 py-1 rounded-xl bg-black/60 backdrop-blur-md text-gray-300 text-xs font-semibold flex items-center gap-1.5 border border-white/10">
+            <div className="relative w-full h-80 sm:h-96 rounded-2xl bg-black/50 p-4 flex items-center justify-center overflow-hidden border border-white/10 group">
+              {product.category === 'iphone' ? (
+                <IPhoneImage
+                  modelId={product.id}
+                  colorName={selectedColor.name}
+                  colorCode={selectedColor.code}
+                  className="w-full h-full"
+                />
+              ) : (
+                <img
+                  src={galleryList[activeGalleryIndex] || selectedColor.image}
+                  alt={product.name}
+                  className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                />
+              )}
+              
+              <span className="absolute bottom-3 left-3 px-3 py-1 rounded-xl bg-black/70 backdrop-blur-md text-gray-200 text-xs font-semibold flex items-center gap-1.5 border border-white/15">
                 <Eye className="w-3.5 h-3.5 text-blue-400" />
-                <span>Màu: <strong className="text-white">{selectedColor.name}</strong></span>
+                <span>Màu: <strong className="text-white font-bold">{selectedColor.name}</strong></span>
               </span>
             </div>
 
-            {/* Thumbnail Gallery Bar */}
-            {galleryList.length > 1 && (
-              <div className="space-y-1.5">
-                <span className="text-xs font-bold text-gray-300 block">Góc chụp chi tiết (Nhấp để phóng to):</span>
-                <div className="flex items-center gap-2 overflow-x-auto pb-1">
-                  {galleryList.map((imgUrl, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setActiveImage(imgUrl)}
-                      className={`w-16 h-16 rounded-xl overflow-hidden border-2 bg-black/40 p-1 transition-all flex-shrink-0 ${
-                        activeImage === imgUrl
-                          ? 'border-blue-400 ring-2 ring-blue-500/40 scale-105'
-                          : 'border-white/10 opacity-70 hover:opacity-100'
-                      }`}
-                    >
-                      <img src={imgUrl} alt={`Góc ${i + 1}`} className="w-full h-full object-contain" />
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Color Buttons */}
-            <div className="space-y-2 pt-2">
+            {/* Color Select Buttons */}
+            <div className="space-y-2 pt-1">
               <label className="text-sm font-bold text-gray-200 block">
-                Chọn Màu Sắc Máy:
+                Chọn Màu Sắc Máy Chuẩn Zin:
               </label>
               <div className="flex flex-wrap gap-2">
                 {product.colors.map((col, idx) => (
@@ -134,7 +122,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                     onClick={() => handleColorSelect(col)}
                     className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 border transition-all ${
                       selectedColor.name === col.name
-                        ? 'bg-blue-600/25 text-blue-300 border-blue-400 shadow-md ring-1 ring-blue-500/40'
+                        ? 'bg-blue-600/30 text-blue-300 border-blue-400 shadow-md ring-1 ring-blue-500/40 scale-105'
                         : 'bg-white/5 text-gray-300 border-white/10 hover:bg-white/10'
                     }`}
                   >
@@ -154,7 +142,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 <span className="text-xs font-bold text-amber-400 uppercase tracking-wider block">
                   ✨ Điểm Nổi Bật Dòng Máy:
                 </span>
-                <ul className="space-y-1.5 text-xs text-gray-300">
+                <ul className="space-y-1.5 text-xs sm:text-sm text-gray-300">
                   {product.highlights.map((hl, idx) => (
                     <li key={idx} className="flex items-start gap-2">
                       <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
@@ -236,7 +224,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </div>
 
             {/* Store Guarantee Badge */}
-            <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs text-emerald-300 space-y-1">
+            <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs sm:text-sm text-emerald-300 space-y-1">
               <div className="font-bold flex items-center gap-1.5 text-emerald-400">
                 <ShieldCheck className="w-4 h-4" />
                 <span>Cam Kết Vàng Tại Hiếu Apple:</span>
