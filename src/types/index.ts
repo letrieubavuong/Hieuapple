@@ -5,7 +5,8 @@ export type ConditionType = 'Mới 100%' | 'Likenew 99%' | '98%';
 export interface ProductColor {
   name: string;
   code: string;
-  image: string;
+  image: string; // Primary image
+  gallery?: string[]; // Additional multi-angle / detail photos
 }
 
 export interface StoragePriceOption {
@@ -19,13 +20,14 @@ export interface Product {
   name: string;
   category: 'iphone' | 'accessory';
   series?: '16' | '15' | '14' | '13' | 'other';
-  price: number; // Base price for default storage
+  price: number;
   originalPrice: number;
   condition: ConditionType;
   storageOptions?: StoragePriceOption[];
   colors: ProductColor[];
   description: string;
   specs: { [key: string]: string };
+  highlights?: string[]; // Key feature bullet points
   isHot?: boolean;
   isNew?: boolean;
   inStock: boolean;

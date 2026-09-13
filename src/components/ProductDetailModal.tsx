@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, ShoppingCart, Zap, ShieldCheck, Truck, RotateCcw, Sparkles, Check } from 'lucide-react';
+import { X, ShoppingCart, Zap, ShieldCheck, Truck, RotateCcw, Sparkles, Check, ChevronLeft, ChevronRight, Eye } from 'lucide-react';
 import { Product, ProductColor, StoragePriceOption } from '../types';
 
 interface ProductDetailModalProps {
@@ -34,56 +34,107 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
     product.storageOptions ? product.storageOptions[0] : undefined
   );
 
+  // Active Gallery Image
+  const [activeImage, setActiveImage] = useState<string>(product.colors[0].image);
+
   useEffect(() => {
     if (product) {
-      setSelectedColor(product.colors[0]);
+      const defaultCol = product.colors[0];
+      setSelectedColor(defaultCol);
+      setActiveImage(defaultCol.image);
       setSelectedStorageOpt(product.storageOptions ? product.storageOptions[0] : undefined);
     }
   }, [product]);
+
+  // When color changes, update active image to the new color's main image
+  const handleColorSelect = (col: ProductColor) => {
+    setSelectedColor(col);
+    setActiveImage(col.image);
+  };
+
+  const galleryList = selectedColor.gallery && selectedColor.gallery.length > 0
+    ? selectedColor.gallery
+    : [selectedColor.image];
 
   const currentPrice = selectedStorageOpt ? selectedStorageOpt.price : product.price;
   const currentOriginalPrice = selectedStorageOpt ? selectedStorageOpt.originalPrice : product.originalPrice;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto animate-fadeIn">
-      <div className="glass-panel w-full max-w-4xl rounded-3xl overflow-hidden border border-white/20 relative shadow-2xl my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md overflow-y-auto animate-fadeIn">
+      <div className="glass-panel w-full max-w-5xl rounded-3xl overflow-hidden border border-white/20 relative shadow-2xl my-6 max-h-[92vh] flex flex-col">
         
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white flex items-center justify-center transition-all"
-        >
-          <X className="w-5 h-5" />
-        </button>
+        {/* Header Bar inside Modal */}
+        <div className="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-black/40">
+          <div className="flex items-center gap-2">
+            <span className="px-3 py-1 rounded-full bg-blue-600/90 text-white font-extrabold text-xs uppercase tracking-wide">
+              {product.condition}
+            </span>
+            <h3 className="font-extrabold text-white text-base sm:text-lg truncate max-w-md sm:max-w-xl">
+              {product.name} {selectedStorageOpt ? `(${selectedStorageOpt.size})` : ''}
+            </h3>
+          </div>
+          <button
+            onClick={onClose}
+            className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white flex items-center justify-center transition-all"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
 
-        <div className="grid md:grid-cols-12 gap-6 p-6 sm:p-8">
+        {/* Modal Scrollable Body */}
+        <div className="overflow-y-auto p-5 sm:p-8 grid md:grid-cols-12 gap-6 sm:gap-8">
           
-          {/* Left Column - Product Images & Colors */}
-          <div className="md:col-span-6 flex flex-col justify-between">
-            <div className="relative w-full h-72 sm:h-80 rounded-2xl bg-black/40 p-4 flex items-center justify-center overflow-hidden border border-white/10">
+          {/* Left Column - Multi-Angle Gallery Viewer & Color Select */}
+          <div className="md:col-span-6 flex flex-col space-y-4">
+            
+            {/* Main Stage Image */}
+            <div className="relative w-full h-72 sm:h-96 rounded-2xl bg-black/50 p-4 flex items-center justify-center overflow-hidden border border-white/10 group">
               <img
-                src={selectedColor.image}
+                src={activeImage}
                 alt={product.name}
-                className="max-h-full max-w-full object-contain transition-transform duration-500 hover:scale-105"
+                className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105"
               />
-              <span className="absolute top-3 left-3 px-3.5 py-1.5 rounded-full bg-blue-600/90 text-white font-extrabold text-xs uppercase tracking-wide">
-                {product.condition}
+              <span className="absolute bottom-3 left-3 px-3 py-1 rounded-xl bg-black/60 backdrop-blur-md text-gray-300 text-xs font-semibold flex items-center gap-1.5 border border-white/10">
+                <Eye className="w-3.5 h-3.5 text-blue-400" />
+                <span>Màu: <strong className="text-white">{selectedColor.name}</strong></span>
               </span>
             </div>
 
-            {/* Colors Selector */}
-            <div className="mt-4 space-y-2">
+            {/* Thumbnail Gallery Bar */}
+            {galleryList.length > 1 && (
+              <div className="space-y-1.5">
+                <span className="text-xs font-bold text-gray-300 block">Góc chụp chi tiết (Nhấp để phóng to):</span>
+                <div className="flex items-center gap-2 overflow-x-auto pb-1">
+                  {galleryList.map((imgUrl, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveImage(imgUrl)}
+                      className={`w-16 h-16 rounded-xl overflow-hidden border-2 bg-black/40 p-1 transition-all flex-shrink-0 ${
+                        activeImage === imgUrl
+                          ? 'border-blue-400 ring-2 ring-blue-500/40 scale-105'
+                          : 'border-white/10 opacity-70 hover:opacity-100'
+                      }`}
+                    >
+                      <img src={imgUrl} alt={`Góc ${i + 1}`} className="w-full h-full object-contain" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Color Buttons */}
+            <div className="space-y-2 pt-2">
               <label className="text-sm font-bold text-gray-200 block">
-                Màu sắc: <span className="text-blue-400 font-extrabold">{selectedColor.name}</span>
+                Chọn Màu Sắc Máy:
               </label>
               <div className="flex flex-wrap gap-2">
                 {product.colors.map((col, idx) => (
                   <button
                     key={idx}
-                    onClick={() => setSelectedColor(col)}
+                    onClick={() => handleColorSelect(col)}
                     className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 border transition-all ${
                       selectedColor.name === col.name
-                        ? 'bg-blue-600/20 text-blue-400 border-blue-500 shadow-md'
+                        ? 'bg-blue-600/25 text-blue-300 border-blue-400 shadow-md ring-1 ring-blue-500/40'
                         : 'bg-white/5 text-gray-300 border-white/10 hover:bg-white/10'
                     }`}
                   >
@@ -96,50 +147,71 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 ))}
               </div>
             </div>
+
+            {/* Key Highlights */}
+            {product.highlights && (
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-2">
+                <span className="text-xs font-bold text-amber-400 uppercase tracking-wider block">
+                  ✨ Điểm Nổi Bật Dòng Máy:
+                </span>
+                <ul className="space-y-1.5 text-xs text-gray-300">
+                  {product.highlights.map((hl, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                      <span>{hl}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
           </div>
 
-          {/* Right Column - Product Specs & Purchase Options */}
+          {/* Right Column - Product Specs & Options */}
           <div className="md:col-span-6 space-y-5">
             
-            {/* Title & Price */}
+            {/* Title & Description */}
             <div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
-                {product.name} {selectedStorageOpt ? `(${selectedStorageOpt.size})` : ''}
-              </h2>
-              <p className="text-xs sm:text-sm text-gray-300 mt-1.5 leading-relaxed">{product.description}</p>
+              <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">{product.description}</p>
               
-              {/* Dynamic Price Output */}
-              <div className="flex items-baseline gap-3 mt-4">
-                <span className="text-2xl sm:text-3xl font-extrabold text-blue-400">
-                  {currentPrice.toLocaleString('vi-VN')}đ
-                </span>
-                {currentOriginalPrice > currentPrice && (
-                  <span className="text-sm sm:text-base text-gray-400 line-through">
-                    {currentOriginalPrice.toLocaleString('vi-VN')}đ
+              {/* Price Tag */}
+              <div className="flex items-baseline gap-3 mt-4 p-4 rounded-2xl bg-blue-950/40 border border-blue-500/30">
+                <div>
+                  <span className="text-xs text-gray-400 block">Giá bán khuyến mãi:</span>
+                  <span className="text-2xl sm:text-3xl font-extrabold text-blue-400">
+                    {currentPrice.toLocaleString('vi-VN')}đ
                   </span>
+                </div>
+                {currentOriginalPrice > currentPrice && (
+                  <div className="text-right ml-auto">
+                    <span className="text-xs text-gray-400 block">Giá niêm yết cũ:</span>
+                    <span className="text-sm sm:text-base text-gray-400 line-through">
+                      {currentOriginalPrice.toLocaleString('vi-VN')}đ
+                    </span>
+                  </div>
                 )}
               </div>
             </div>
 
-            {/* Storage Selection (Dynamic Price Trigger) */}
+            {/* Storage Selection */}
             {product.storageOptions && (
               <div className="space-y-2">
                 <label className="text-sm font-bold text-gray-200 block">
-                  Chọn Dung Lượng Bộ Nhớ (Giá thay đổi tương ứng):
+                  Chọn Dung Lượng Bộ Nhớ:
                 </label>
                 <div className="flex flex-wrap gap-2.5">
                   {product.storageOptions.map((st) => (
                     <button
                       key={st.size}
                       onClick={() => setSelectedStorageOpt(st)}
-                      className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold border transition-all ${
+                      className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold border transition-all text-left ${
                         selectedStorageOpt?.size === st.size
                           ? 'bg-blue-600 text-white border-blue-400 shadow-lg shadow-blue-600/30 scale-105'
                           : 'bg-white/5 text-gray-300 border-white/10 hover:bg-white/10'
                       }`}
                     >
-                      <span>{st.size}</span>
-                      <span className="block text-[11px] font-normal text-blue-300 opacity-90">
+                      <span className="block">{st.size}</span>
+                      <span className="text-[11px] font-normal text-blue-200">
                         {st.price.toLocaleString('vi-VN')}đ
                       </span>
                     </button>
@@ -148,41 +220,32 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               </div>
             )}
 
-            {/* Specifications Summary */}
+            {/* Detailed Technical Specifications Table */}
             <div className="space-y-2 pt-2 border-t border-white/10">
-              <h4 className="text-xs sm:text-sm font-bold text-gray-200 uppercase tracking-wider">Thông Số Kỹ Thuật:</h4>
-              <div className="grid grid-cols-1 gap-2 text-xs sm:text-sm text-gray-300 bg-white/5 p-3.5 rounded-xl border border-white/10">
+              <h4 className="text-xs sm:text-sm font-bold text-gray-200 uppercase tracking-wider">
+                Bảng Thông Số Kỹ Thuật Chi Tiết:
+              </h4>
+              <div className="grid grid-cols-1 gap-2 text-xs sm:text-sm text-gray-300 bg-black/40 p-4 rounded-2xl border border-white/10 max-h-64 overflow-y-auto">
                 {Object.entries(product.specs).map(([key, val]) => (
-                  <div key={key} className="flex items-center justify-between border-b border-white/5 pb-1.5 last:border-none">
-                    <span className="text-gray-400 font-medium">{key}:</span>
-                    <span className="font-bold text-gray-100">{val}</span>
+                  <div key={key} className="flex flex-col sm:flex-row sm:items-start justify-between border-b border-white/5 pb-2 gap-1 last:border-none">
+                    <span className="text-gray-400 font-bold sm:w-1/3 flex-shrink-0">{key}:</span>
+                    <span className="font-semibold text-gray-100 sm:w-2/3">{val}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Warranties & Policies */}
-            <div className="grid grid-cols-2 gap-2 text-xs text-gray-300">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                <span>Bảo hành 12 Tháng 1 Đổi 1</span>
+            {/* Store Guarantee Badge */}
+            <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs text-emerald-300 space-y-1">
+              <div className="font-bold flex items-center gap-1.5 text-emerald-400">
+                <ShieldCheck className="w-4 h-4" />
+                <span>Cam Kết Vàng Tại Hiếu Apple:</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Truck className="w-4 h-4 text-blue-400" />
-                <span>Giao hỏa tốc toàn quốc</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <RotateCcw className="w-4 h-4 text-purple-400" />
-                <span>Dùng thử 7 ngày miễn phí</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-amber-400" />
-                <span>Tặng sạc 20W + Cường lực</span>
-              </div>
+              <p>• Lỗi 1 đổi 1 trong 3 tháng | Đền 100% tiền nếu đã thay vỏ/ép kính | Hỗ trợ 30% khi sửa bể vỡ</p>
             </div>
 
             {/* Action Buttons: Add to Cart & Buy Now */}
-            <div className="grid grid-cols-2 gap-3 pt-3">
+            <div className="grid grid-cols-2 gap-3 pt-2">
               <button
                 onClick={() => {
                   onAddToCart(
