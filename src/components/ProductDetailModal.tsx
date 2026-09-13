@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { X, ShoppingCart, Zap, ShieldCheck, Truck, RotateCcw, Sparkles, Check, Eye } from 'lucide-react';
+import { X, ShoppingCart, Zap, ShieldCheck, Truck, RotateCcw, Sparkles, Check } from 'lucide-react';
 import { Product, ProductColor, StoragePriceOption } from '../types';
-import { IPhoneImage } from './IPhoneImage';
+import { ImageGalleryViewer } from './ImageGalleryViewer';
 
 interface ProductDetailModalProps {
   product: Product | null;
@@ -35,33 +35,20 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
     product.storageOptions ? product.storageOptions[0] : undefined
   );
 
-  // Active Gallery Image index or type
-  const [activeGalleryIndex, setActiveGalleryIndex] = useState<number>(0);
-
   useEffect(() => {
     if (product) {
       const defaultCol = product.colors[0];
       setSelectedColor(defaultCol);
-      setActiveGalleryIndex(0);
       setSelectedStorageOpt(product.storageOptions ? product.storageOptions[0] : undefined);
     }
   }, [product]);
-
-  const handleColorSelect = (col: ProductColor) => {
-    setSelectedColor(col);
-    setActiveGalleryIndex(0);
-  };
-
-  const galleryList = selectedColor.gallery && selectedColor.gallery.length > 0
-    ? selectedColor.gallery
-    : [selectedColor.image];
 
   const currentPrice = selectedStorageOpt ? selectedStorageOpt.price : product.price;
   const currentOriginalPrice = selectedStorageOpt ? selectedStorageOpt.originalPrice : product.originalPrice;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md overflow-y-auto animate-fadeIn">
-      <div className="glass-panel w-full max-w-5xl rounded-3xl overflow-hidden border border-white/20 relative shadow-2xl my-6 max-h-[92vh] flex flex-col">
+      <div className="glass-panel w-full max-w-5xl rounded-3xl overflow-hidden border border-white/20 relative shadow-2xl my-6 max-h-[94vh] flex flex-col">
         
         {/* Header Bar inside Modal */}
         <div className="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-black/40">
@@ -84,34 +71,17 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         {/* Modal Scrollable Body */}
         <div className="overflow-y-auto p-5 sm:p-8 grid md:grid-cols-12 gap-6 sm:gap-8">
           
-          {/* Left Column - Model Accurate Render & Color Select */}
+          {/* Left Column - Interactive Multi-View Carousel Gallery Viewer & Color Selection */}
           <div className="md:col-span-6 flex flex-col space-y-4">
             
-            {/* Main Stage Image */}
-            <div className="relative w-full h-80 sm:h-96 rounded-2xl bg-black/50 p-4 flex items-center justify-center overflow-hidden border border-white/10 group">
-              {product.category === 'iphone' ? (
-                <IPhoneImage
-                  modelId={product.id}
-                  colorName={selectedColor.name}
-                  colorCode={selectedColor.code}
-                  className="w-full h-full"
-                />
-              ) : (
-                <img
-                  src={galleryList[activeGalleryIndex] || selectedColor.image}
-                  alt={product.name}
-                  className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105"
-                />
-              )}
-              
-              <span className="absolute bottom-3 left-3 px-3 py-1 rounded-xl bg-black/70 backdrop-blur-md text-gray-200 text-xs font-semibold flex items-center gap-1.5 border border-white/15">
-                <Eye className="w-3.5 h-3.5 text-blue-400" />
-                <span>Màu: <strong className="text-white font-bold">{selectedColor.name}</strong></span>
-              </span>
-            </div>
+            {/* Interactive Image Gallery Carousel */}
+            <ImageGalleryViewer
+              product={product}
+              selectedColor={selectedColor}
+            />
 
             {/* Color Select Buttons */}
-            <div className="space-y-2 pt-1">
+            <div className="space-y-2 pt-2">
               <label className="text-sm font-bold text-gray-200 block">
                 Chọn Màu Sắc Máy Chuẩn Zin:
               </label>
@@ -119,7 +89,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 {product.colors.map((col, idx) => (
                   <button
                     key={idx}
-                    onClick={() => handleColorSelect(col)}
+                    onClick={() => setSelectedColor(col)}
                     className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 border transition-all ${
                       selectedColor.name === col.name
                         ? 'bg-blue-600/30 text-blue-300 border-blue-400 shadow-md ring-1 ring-blue-500/40 scale-105'
