@@ -31,22 +31,32 @@ export const ImageGalleryViewer: React.FC<ImageGalleryViewerProps> = ({
     { id: 'side', title: 'Cạnh viền', subLabel: 'Nút bấm' },
   ];
 
-  // Helper to resolve specific real downloaded image path for each view if available
-  const getRealImageForView = (view: string): string | null => {
+  // Helper to resolve specific real downloaded image path for each view
+  const getRealImageForView = (view: string): string => {
     const gallery = selectedColor.gallery || [];
-    if (view === 'back' && (selectedColor.image || gallery[0])) {
-      return selectedColor.image || gallery[0];
+    
+    if (view === 'back') {
+      return selectedColor.image || gallery[0] || `/images/products/${product.id}/main.jpg`;
     }
-    if (view === 'front' && gallery[2]) {
-      return gallery[2];
+    if (view === 'front') {
+      const match = gallery.find((g) => g.includes('front'));
+      if (match) return match;
+      if (gallery[2]) return gallery[2];
+      return `/images/products/${product.id}/front.png`;
     }
-    if (view === 'camera' && gallery[3]) {
-      return gallery[3];
+    if (view === 'camera') {
+      const match = gallery.find((g) => g.includes('camera'));
+      if (match) return match;
+      if (gallery[3]) return gallery[3];
+      return `/images/products/${product.id}/camera.jpg`;
     }
-    if (view === 'side' && gallery[1]) {
-      return gallery[1];
+    if (view === 'side') {
+      const match = gallery.find((g) => g.includes('side') || g.includes('lineup') || g.includes('hands-on'));
+      if (match) return match;
+      if (gallery[1]) return gallery[1];
+      return `/images/products/${product.id}/side.png`;
     }
-    return selectedColor.image || gallery[0] || product.colors[0]?.image || null;
+    return selectedColor.image || gallery[0] || `/images/products/${product.id}/main.jpg`;
   };
 
   const currentRealImage = getRealImageForView(activeView);
@@ -80,23 +90,18 @@ export const ImageGalleryViewer: React.FC<ImageGalleryViewerProps> = ({
               Thoát Video
             </button>
           </div>
-        ) : currentRealImage ? (
+        ) : (
           <img
             src={currentRealImage}
             alt={`${product.name} - ${selectedColor.name}`}
             className="w-full h-full object-contain max-h-full drop-shadow-xl animate-fadeIn transition-all duration-300"
             onError={(e) => {
-              // Graceful fallback to SVG render if local image load fails
-              (e.currentTarget as HTMLElement).style.display = 'none';
+              const target = e.currentTarget as HTMLImageElement;
+              const defaultMain = `/images/products/${product.id}/main.jpg`;
+              if (target.src !== defaultMain) {
+                target.src = defaultMain;
+              }
             }}
-          />
-        ) : (
-          <IPhoneImage
-            modelId={product.id}
-            colorName={selectedColor.name}
-            colorCode={selectedColor.code}
-            view={activeView === 'video' ? 'back' : activeView}
-            className="w-full h-full object-contain max-h-full"
           />
         )}
 
@@ -107,7 +112,7 @@ export const ImageGalleryViewer: React.FC<ImageGalleryViewerProps> = ({
             {activeView === 'back' && 'Mặt Sau Tổng Thể (Ảnh Thật)'}
             {activeView === 'front' && 'Mặt Trước Dynamic Island (Ảnh Thật)'}
             {activeView === 'camera' && 'Cận Cảnh Cụm Camera (Ảnh Thật)'}
-            {activeView === 'side' && 'Góc Nghiêng Cạnh Viền'}
+            {activeView === 'side' && 'Góc Nghiêng Cạnh Viền (Ảnh Thật)'}
             {activeView === 'video' && 'Clip Video 360°'}
           </span>
         </div>
