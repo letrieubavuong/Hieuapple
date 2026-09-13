@@ -118,20 +118,30 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Titan Sa Mạc (Desert Titanium)',
         code: '#c2a88f',
-        image: '/images/products/ip-16-pro-max/main.jpg',
-        gallery: ['/images/products/ip-16-pro-max/main.jpg']
+        image: '/images/products/ip-16-pro-max/ip16-pro-front-back.png',
+        gallery: [
+          '/images/products/ip-16-pro-max/ip16-pro-front-back.png',
+          '/images/products/ip-16-pro-max/ip16-pro-lineup.png',
+          '/images/products/ip-16-pro-max/ip16-pro-real-hands-on.jpg'
+        ]
       },
       {
         name: 'Titan Tự Nhiên (Natural Titanium)',
         code: '#9f9d96',
-        image: '/images/products/ip-16-pro-max/main.jpg',
-        gallery: ['/images/products/ip-16-pro-max/main.jpg']
+        image: '/images/products/ip-16-pro-max/ip16-pro-lineup.png',
+        gallery: [
+          '/images/products/ip-16-pro-max/ip16-pro-lineup.png',
+          '/images/products/ip-16-pro-max/ip16-pro-front-back.png'
+        ]
       },
       {
         name: 'Titan Đen (Black Titanium)',
         code: '#3b3b3d',
-        image: '/images/products/ip-16-pro-max/main.jpg',
-        gallery: ['/images/products/ip-16-pro-max/main.jpg']
+        image: '/images/products/ip-16-pro-max/ip16-pro-real-hands-on.jpg',
+        gallery: [
+          '/images/products/ip-16-pro-max/ip16-pro-real-hands-on.jpg',
+          '/images/products/ip-16-pro-max/ip16-pro-lineup.png'
+        ]
       }
     ],
     specs: {
