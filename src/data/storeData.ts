@@ -20,34 +20,37 @@ export const STORE_INFO = {
 };
 
 export const PRODUCTS: Product[] = [
-  // 1. iPhone 17 Pro Max (MỚI THÊM)
+  // 1. iPhone 17 Pro Max (MỚI THÊM - Thông tin chính xác từ CellphoneS)
   {
     id: 'ip-17-pro-max',
     name: 'iPhone 17 Pro Max 256GB (Chuẩn Zin 99%)',
     category: 'iphone',
     series: '17',
     price: 30500000,
-    originalPrice: 33500000,
+    originalPrice: 34590000,
     condition: 'Likenew 99%',
     storageOptions: [
-      { size: '256GB', price: 30500000, originalPrice: 33500000 },
-      { size: '512GB', price: 35500000, originalPrice: 38500000 },
-      { size: '1TB', price: 41500000, originalPrice: 44500000 }
+      { size: '256GB', price: 30500000, originalPrice: 34590000 },
+      { size: '512GB', price: 35500000, originalPrice: 39590000 },
+      { size: '1TB', price: 41500000, originalPrice: 45590000 },
+      { size: '2TB', price: 47500000, originalPrice: 51590000 }
     ],
     isHot: true,
     isNew: true,
     inStock: true,
     badge: 'SIÊU PHẨM 2026 - MỚI VỀ',
-    description: 'iPhone 17 Pro Max 256GB siêu phẩm flagship mới nhất 2026. Viền Titan Gen 2 siêu mỏng nhẹ, chip Apple A19 Pro vô địch hiệu năng, cụm camera Fusion 48MP zoom 10x và tản nhiệt Vapor Chamber cực mát.',
+    description: 'iPhone 17 Pro Max chính hãng Apple sở hữu màn hình Super Retina XDR 6.9 inch siêu nét 3000 nits, chip Apple A19 Pro vô địch hiệu năng, hệ điều hành iOS 26 tiên tiến, cụm 3 camera 48MP Zoom quang học 8x và sạc nhanh 40W xem video lên tới 37 giờ.',
     highlights: [
-      'Chipset Apple A19 Pro (2nm) cân mọi siêu ứng dụng & đồ họa game khủng',
-      'Cụm camera Fusion 48MP với khả năng Zoom quang học lên đến 10x',
-      'Màn hình 6.9 inch ProMotion 120Hz chống lóa anti-reflective 3000 nits',
-      'Cam kết 100% hàng chuẩn zin nguyên bản 99% đền 100% tiền nếu không zin'
+      'Chipset Apple A19 Pro mới nhất với 6 lõi CPU & GPU 6 lõi Neural Accelerator cực mạnh',
+      'Cụm 3 camera 48MP toàn diện: Chính 48MP OIS + Góc siêu rộng 48MP 120° + Tele 48MP Zoom 8x',
+      'Màn hình 6.9" Super Retina XDR ProMotion 120Hz chống phản chiếu, độ sáng đỉnh 3000 nits',
+      'Camera selfie 18MP Center Stage khẩu độ ƒ/1.9 linh hoạt tự động căn chỉnh góc chụp',
+      'Pin xem video liên tục lên đến 37 giờ (+8 tiếng so với thế hệ trước), sạc nhanh 50% trong 20 phút',
+      'Cam kết 100% hàng chuẩn zin nguyên bản 99% đền 100% tiền nếu phát hiện thay vỏ/ép kính'
     ],
     colors: [
       {
-        name: 'Titan Sa Mạc Thẫm (Desert Gold)',
+        name: 'Cam Vũ Trụ (Cosmic Orange)',
         code: '#cbb197',
         image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
         gallery: [
@@ -56,29 +59,32 @@ export const PRODUCTS: Product[] = [
         ]
       },
       {
-        name: 'Titan Xanh Xám (Titanium Gray)',
-        code: '#7d898c',
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-        gallery: [
-          'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop'
-        ]
-      },
-      {
-        name: 'Titan Đen Vũ Trụ (Space Black Titanium)',
-        code: '#222327',
+        name: 'Bạc (Silver Titanium)',
+        code: '#e3e4e5',
         image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop',
         gallery: [
           'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop'
         ]
+      },
+      {
+        name: 'Xanh Đậm (Deep Blue Titanium)',
+        code: '#2c3e50',
+        image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&auto=format&fit=crop',
+        gallery: [
+          'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&auto=format&fit=crop'
+        ]
       }
     ],
     specs: {
-      'Màn hình': '6.9 inch OLED Super Retina XDR ProMotion 120Hz, Anti-reflective 3000 nits',
-      'Chipset': 'Apple A19 Pro (2nm) tản nhiệt buồng hơi Vapor Chamber',
-      'RAM & Bộ nhớ': '12GB RAM Unified | 256GB / 512GB / 1TB',
-      'Camera sau': '48MP Fusion (OIS Sensor-Shift Gen 3) + 48MP UltraWide + 48MP Tele (Zoom 10x)',
-      'Pin & Sạc': 'Pin 4850 mAh, Sạc nhanh MagSafe 30W, Cổng USB-C 4.0 (40Gbps)',
-      'Bảo hành Hiếu Apple': '💥 Lỗi 1 đổi 1 trong 3 tháng | Cam kết đền 100% tiền nếu không zin | Hỗ trợ 30% khi bể vỡ'
+      'Màn hình': '6.9 inch Super Retina XDR (2868 x 1320 px), ProMotion 120Hz, Always-On, True Tone, Anti-reflective, 3000 nits max',
+      'Chipset & CPU': 'Chip Apple A19 Pro (6 lõi CPU: 2 hiệu năng + 4 tiết kiệm điện) | GPU 6 lõi Neural Accelerator',
+      'Bộ nhớ trong': '256GB / 512GB / 1TB / 2TB',
+      'Hệ điều hành': 'iOS 26 (Khi ra mắt)',
+      'Camera sau': 'Chính 48MP ƒ/1.6 OIS + Góc Siêu Rộng 48MP ƒ/2.2 120° + Tele 48MP ƒ/2.8 OIS Zoom quang 8x',
+      'Camera trước': '18MP Center Stage khẩu độ ƒ/1.9',
+      'Pin & Sạc nhanh': 'Thời lượng xem video 37 giờ | Sạc nhanh 50% trong 20 phút (Củ sạc 40W trở lên)',
+      'SIM & Kết nối': '5G, SIM kép (nano-SIM & eSIM / Hỗ trợ 2 eSIM), NFC',
+      'Bảo hành Hiếu Apple': '💥 Lỗi 1 đổi 1 trong 3 tháng | Đền 100% tiền nếu không zin | Hỗ trợ 30% khi rơi vỡ'
     }
   },
 
