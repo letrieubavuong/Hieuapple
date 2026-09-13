@@ -31,6 +31,26 @@ export const ImageGalleryViewer: React.FC<ImageGalleryViewerProps> = ({
     { id: 'side', title: 'Cạnh viền', subLabel: 'Nút bấm' },
   ];
 
+  // Helper to resolve specific real downloaded image path for each view if available
+  const getRealImageForView = (view: string): string | null => {
+    const gallery = selectedColor.gallery || [];
+    if (view === 'back' && (selectedColor.image || gallery[0])) {
+      return selectedColor.image || gallery[0];
+    }
+    if (view === 'front' && gallery[2]) {
+      return gallery[2];
+    }
+    if (view === 'camera' && gallery[3]) {
+      return gallery[3];
+    }
+    if (view === 'side' && gallery[1]) {
+      return gallery[1];
+    }
+    return null;
+  };
+
+  const currentRealImage = getRealImageForView(activeView);
+
   const handleScroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
       const scrollAmount = direction === 'left' ? -160 : 160;
@@ -60,6 +80,16 @@ export const ImageGalleryViewer: React.FC<ImageGalleryViewerProps> = ({
               Thoát Video
             </button>
           </div>
+        ) : currentRealImage ? (
+          <img
+            src={currentRealImage}
+            alt={`${product.name} - ${selectedColor.name}`}
+            className="w-full h-full object-contain max-h-full drop-shadow-xl animate-fadeIn transition-all duration-300"
+            onError={(e) => {
+              // Graceful fallback to SVG render if local image load fails
+              (e.currentTarget as HTMLElement).style.display = 'none';
+            }}
+          />
         ) : (
           <IPhoneImage
             modelId={product.id}
@@ -74,9 +104,9 @@ export const ImageGalleryViewer: React.FC<ImageGalleryViewerProps> = ({
         <div className="absolute bottom-3 left-4 bg-gray-900/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-gray-700/50 text-xs text-gray-200 flex items-center gap-2 shadow-md">
           <Eye className="w-3.5 h-3.5 text-red-400" />
           <span className="text-[11px] sm:text-xs">
-            {activeView === 'back' && 'Mặt Sau Tổng Thể'}
-            {activeView === 'front' && 'Mặt Trước Dynamic Island'}
-            {activeView === 'camera' && 'Cận Cảnh Cụm Camera'}
+            {activeView === 'back' && 'Mặt Sau Tổng Thể (Ảnh Thật)'}
+            {activeView === 'front' && 'Mặt Trước Dynamic Island (Ảnh Thật)'}
+            {activeView === 'camera' && 'Cận Cảnh Cụm Camera (Ảnh Thật)'}
             {activeView === 'side' && 'Góc Nghiêng Cạnh Viền'}
             {activeView === 'video' && 'Clip Video 360°'}
           </span>
@@ -102,6 +132,8 @@ export const ImageGalleryViewer: React.FC<ImageGalleryViewerProps> = ({
         >
           {galleryItems.map((item) => {
             const isActive = activeView === item.id;
+            const thumbImg = getRealImageForView(item.id);
+
             return (
               <button
                 key={item.id}
@@ -126,6 +158,12 @@ export const ImageGalleryViewer: React.FC<ImageGalleryViewerProps> = ({
                     </div>
                     <span className="text-[10px] font-bold text-gray-600 dark:text-gray-300">Video</span>
                   </div>
+                ) : thumbImg ? (
+                  <img
+                    src={thumbImg}
+                    alt={item.title}
+                    className="w-full h-full object-contain p-0.5"
+                  />
                 ) : (
                   <IPhoneImage
                     modelId={product.id}
@@ -154,4 +192,5 @@ export const ImageGalleryViewer: React.FC<ImageGalleryViewerProps> = ({
     </div>
   );
 };
+
 

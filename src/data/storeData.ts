@@ -52,26 +52,29 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Cam Vũ Trụ (Cosmic Orange)',
         code: '#cbb197',
-        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
+        image: '/images/iphone-17-pro-max/cam-vu-tru-main.jpg',
         gallery: [
-          'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop'
+          '/images/iphone-17-pro-max/cam-vu-tru-main.jpg',
+          '/images/iphone-17-pro-max/cam-vu-tru-back.jpg',
+          '/images/iphone-17-pro-max/cam-vu-tru-front.jpg',
+          '/images/iphone-17-pro-max/gallery-camera.png'
         ]
       },
       {
         name: 'Bạc (Silver Titanium)',
         code: '#e3e4e5',
-        image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop',
+        image: '/images/iphone-17-pro-max/gallery-overview.png',
         gallery: [
-          'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop'
+          '/images/iphone-17-pro-max/gallery-overview.png',
+          '/images/iphone-17-pro-max/gallery-front.png'
         ]
       },
       {
         name: 'Xanh Đậm (Deep Blue Titanium)',
         code: '#2c3e50',
-        image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&auto=format&fit=crop',
+        image: '/images/iphone-17-pro-max/cam-vu-tru-back.jpg',
         gallery: [
-          'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&auto=format&fit=crop'
+          '/images/iphone-17-pro-max/cam-vu-tru-back.jpg'
         ]
       }
     ],
