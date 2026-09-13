@@ -137,7 +137,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
             {selectedCategory !== 'accessory' && (
               <div className="flex items-center gap-1.5 flex-wrap">
                 <span className="text-gray-400 font-medium">Dòng iPhone:</span>
-                {['all', '16', '15', '14', '13'].map((ser) => (
+                {['all', '17', '16', '15', '14', '13'].map((ser) => (
                   <button
                     key={ser}
                     onClick={() => setSelectedSeries(ser)}

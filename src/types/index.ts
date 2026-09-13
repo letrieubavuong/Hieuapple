@@ -19,7 +19,7 @@ export interface Product {
   id: string;
   name: string;
   category: 'iphone' | 'accessory';
-  series?: '16' | '15' | '14' | '13' | 'other';
+  series?: '17' | '16' | '15' | '14' | '13' | 'other';
   price: number;
   originalPrice: number;
   condition: ConditionType;
@@ -27,7 +27,7 @@ export interface Product {
   colors: ProductColor[];
   description: string;
   specs: { [key: string]: string };
-  highlights?: string[]; // Key feature bullet points
+  highlights?: string[];
   isHot?: boolean;
   isNew?: boolean;
   inStock: boolean;

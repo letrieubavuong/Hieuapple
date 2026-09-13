@@ -20,10 +20,72 @@ export const STORE_INFO = {
 };
 
 export const PRODUCTS: Product[] = [
-  // 1. iPhone 16 Pro Max
+  // 1. iPhone 17 Pro Max (MỚI THÊM)
+  {
+    id: 'ip-17-pro-max',
+    name: 'iPhone 17 Pro Max 256GB (Chuẩn Zin 99%)',
+    category: 'iphone',
+    series: '17',
+    price: 30500000,
+    originalPrice: 33500000,
+    condition: 'Likenew 99%',
+    storageOptions: [
+      { size: '256GB', price: 30500000, originalPrice: 33500000 },
+      { size: '512GB', price: 35500000, originalPrice: 38500000 },
+      { size: '1TB', price: 41500000, originalPrice: 44500000 }
+    ],
+    isHot: true,
+    isNew: true,
+    inStock: true,
+    badge: 'SIÊU PHẨM 2026 - MỚI VỀ',
+    description: 'iPhone 17 Pro Max 256GB siêu phẩm flagship mới nhất 2026. Viền Titan Gen 2 siêu mỏng nhẹ, chip Apple A19 Pro vô địch hiệu năng, cụm camera Fusion 48MP zoom 10x và tản nhiệt Vapor Chamber cực mát.',
+    highlights: [
+      'Chipset Apple A19 Pro (2nm) cân mọi siêu ứng dụng & đồ họa game khủng',
+      'Cụm camera Fusion 48MP với khả năng Zoom quang học lên đến 10x',
+      'Màn hình 6.9 inch ProMotion 120Hz chống lóa anti-reflective 3000 nits',
+      'Cam kết 100% hàng chuẩn zin nguyên bản 99% đền 100% tiền nếu không zin'
+    ],
+    colors: [
+      {
+        name: 'Titan Sa Mạc Thẫm (Desert Gold)',
+        code: '#cbb197',
+        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
+        gallery: [
+          'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
+          'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop'
+        ]
+      },
+      {
+        name: 'Titan Xanh Xám (Titanium Gray)',
+        code: '#7d898c',
+        image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
+        gallery: [
+          'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop'
+        ]
+      },
+      {
+        name: 'Titan Đen Vũ Trụ (Space Black Titanium)',
+        code: '#222327',
+        image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop',
+        gallery: [
+          'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop'
+        ]
+      }
+    ],
+    specs: {
+      'Màn hình': '6.9 inch OLED Super Retina XDR ProMotion 120Hz, Anti-reflective 3000 nits',
+      'Chipset': 'Apple A19 Pro (2nm) tản nhiệt buồng hơi Vapor Chamber',
+      'RAM & Bộ nhớ': '12GB RAM Unified | 256GB / 512GB / 1TB',
+      'Camera sau': '48MP Fusion (OIS Sensor-Shift Gen 3) + 48MP UltraWide + 48MP Tele (Zoom 10x)',
+      'Pin & Sạc': 'Pin 4850 mAh, Sạc nhanh MagSafe 30W, Cổng USB-C 4.0 (40Gbps)',
+      'Bảo hành Hiếu Apple': '💥 Lỗi 1 đổi 1 trong 3 tháng | Cam kết đền 100% tiền nếu không zin | Hỗ trợ 30% khi bể vỡ'
+    }
+  },
+
+  // 2. iPhone 16 Pro Max
   {
     id: 'ip-16-pro-max',
-    name: 'iPhone 16 Pro Max (Chuẩn Zin 99%)',
+    name: 'iPhone 16 Pro Max 256GB (Chuẩn Zin 99%)',
     category: 'iphone',
     series: '16',
     price: 23950000,
@@ -50,45 +112,38 @@ export const PRODUCTS: Product[] = [
         image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
         gallery: [
           'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop'
+          'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop'
         ]
       },
       {
         name: 'Titan Tự Nhiên (Natural Titanium)',
         code: '#9f9d96',
         image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-        gallery: [
-          'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop'
-        ]
+        gallery: ['https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop']
       },
       {
         name: 'Titan Đen (Black Titanium)',
         code: '#3b3b3d',
         image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop',
-        gallery: [
-          'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop'
-        ]
+        gallery: ['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop']
       }
     ],
     specs: {
       'Màn hình': '6.9 inch Super Retina XDR OLED (2868 x 1320 pixel), ProMotion 120Hz, Độ sáng 2000 nits',
       'Chipset': 'Apple A18 Pro (3nm) 6 nhân CPU, 6 nhân GPU, 16 nhân Neural Engine',
       'RAM & Bộ nhớ': '8GB RAM | Dung lượng 256GB High-Speed NVMe',
-      'Camera sau': 'Chính Fusion 48MP (OIS Sensor-shift) + Góc siêu rộng 48MP + Tele 12MP (Zoom optical 5x, Tetraprism)',
+      'Camera sau': 'Chính Fusion 48MP (OIS Sensor-shift) + Góc siêu rộng 48MP + Tele 12MP (Zoom optical 5x)',
       'Camera trước': '12MP TrueDepth Autofocus, Quay phim 4K 60fps Dolby Vision',
-      'Pin & Sạc': 'Pin 4685 mAh (Xem video lên tới 33h), Sạc nhanh MagSafe 25W, Sạc dây USB-C 3.0 (10Gbps)',
-      'Chất liệu & Kháng nước': 'Khung Titan Cấp 5 + Mặt kính Ceramic Shield thế hệ mới, IP68 (Sâu 6m / 30 phút)',
+      'Pin & Sạc': 'Pin 4685 mAh, Sạc nhanh MagSafe 25W, Sạc dây USB-C 3.0 (10Gbps)',
+      'Chất liệu & Kháng nước': 'Khung Titan Cấp 5 + Mặt kính Ceramic Shield thế hệ mới, IP68',
       'Bảo hành Hiếu Apple': '💥 Lỗi 1 đổi 1 trong 3 tháng | Cam kết hoàn 100% tiền nếu không zin | Hỗ trợ 30% chi phí sửa vỡ'
     }
   },
 
-  // 2. iPhone 15 Pro Max
+  // 3. iPhone 15 Pro Max
   {
     id: 'ip-15-pro-max',
-    name: 'iPhone 15 Pro Max (Chuẩn Zin 99%)',
+    name: 'iPhone 15 Pro Max 256GB (Chuẩn Zin 99%)',
     category: 'iphone',
     series: '15',
     price: 17400000,
@@ -112,41 +167,31 @@ export const PRODUCTS: Product[] = [
         name: 'Titan Tự Nhiên',
         code: '#9f9d96',
         image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-        gallery: [
-          'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop'
-        ]
+        gallery: ['https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop']
       },
       {
         name: 'Titan Xanh (Blue)',
         code: '#2c3b4e',
         image: 'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop',
-        gallery: [
-          'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop'
-        ]
+        gallery: ['https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop']
       },
       {
         name: 'Titan Đen',
         code: '#3b3b3d',
         image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop',
-        gallery: [
-          'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop'
-        ]
+        gallery: ['https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800&auto=format&fit=crop']
       }
     ],
     specs: {
-      'Màn hình': '6.7 inch OLED Super Retina XDR (2796 x 1290 pixel), 120Hz ProMotion, Dynamic Island',
-      'Chipset': 'Apple A17 Pro (3nm) GPU 6 nhân có Ray Tracing cơ sở phần cứng',
+      'Màn hình': '6.7 inch OLED Super Retina XDR, 120Hz ProMotion, Dynamic Island',
+      'Chipset': 'Apple A17 Pro (3nm) GPU 6 nhân',
       'RAM & Bộ nhớ': '8GB RAM | 256GB NVMe',
-      'Camera': 'Camera chính 48MP (24mm, 28mm, 35mm) + Ultra Wide 12MP + Tele 12MP (Zoom quang 5x / 120mm)',
-      'Cổng kết nối': 'USB-C hỗ trợ USB 3 (lên đến 10Gb/s) & Xuất màn hình 4K HDR',
+      'Camera': 'Camera chính 48MP + Ultra Wide 12MP + Tele 12MP (Zoom optical 5x)',
       'Bảo hành Hiếu Apple': '💥 Lỗi 1 đổi 1 trong 3 tháng | Cam kết tặng máy + hoàn tiền nếu đã thay vỏ/ép kính'
     }
   },
 
-  // 3. iPhone 15 Pro
+  // 4. iPhone 15 Pro
   {
     id: 'ip-15-pro',
     name: 'iPhone 15 Pro 256GB (Chuẩn Zin 99%)',
@@ -185,12 +230,11 @@ export const PRODUCTS: Product[] = [
       'Màn hình': '6.1 inch Super Retina XDR 120Hz ProMotion, Dynamic Island',
       'Chipset': 'Apple A17 Pro (3nm)',
       'RAM & Bộ nhớ': '8GB RAM | 256GB',
-      'Camera': '48MP Main + 12MP UltraWide + 12MP Tele (Zoom 3x)',
       'Bảo hành Hiếu Apple': '💥 Lỗi 1 đổi 1 trong 3 tháng | Hỗ trợ 30% chi phí sửa chữa bể vỡ'
     }
   },
 
-  // 4. iPhone 14 Pro Max
+  // 5. iPhone 14 Pro Max
   {
     id: 'ip-14-pro-max',
     name: 'iPhone 14 Pro Max (Chuẩn Zin 99%)',
@@ -217,10 +261,7 @@ export const PRODUCTS: Product[] = [
         name: 'Tím Deep Purple',
         code: '#4b3b55',
         image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-        gallery: [
-          'https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop'
-        ]
+        gallery: ['https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop']
       },
       {
         name: 'Vàng Gold',
@@ -236,16 +277,15 @@ export const PRODUCTS: Product[] = [
       }
     ],
     specs: {
-      'Màn hình': '6.7 inch OLED Super Retina XDR 120Hz (2796 x 1290 pixel), Dynamic Island',
-      'Chipset': 'Apple A16 Bionic (4nm) 6 nhân CPU, 5 nhân GPU',
+      'Màn hình': '6.7 inch OLED Super Retina XDR 120Hz, Dynamic Island',
+      'Chipset': 'Apple A16 Bionic (4nm)',
       'RAM & Bộ nhớ': '6GB RAM | 128GB / 256GB',
-      'Camera sau': '48MP Main + 12MP Ultra Wide + 12MP Tele (Zoom optical 3x)',
-      'Pin': '4323 mAh, xem video liên tục lên đến 29 giờ',
+      'Camera sau': '48MP Main + 12MP Ultra Wide + 12MP Tele (Zoom 3x)',
       'Bảo hành Hiếu Apple': '💥 1 đổi 1 trong 3 tháng | Tặng máy nếu đả ép kính/thay vỏ'
     }
   },
 
-  // 5. iPhone 14 Pro
+  // 6. iPhone 14 Pro
   {
     id: 'ip-14-pro',
     name: 'iPhone 14 Pro (Chuẩn Zin 99%)',
@@ -288,7 +328,7 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 6. iPhone 14 Plus
+  // 7. iPhone 14 Plus
   {
     id: 'ip-14-plus',
     name: 'iPhone 14 Plus 128GB (Chuẩn Zin 99%)',
@@ -324,13 +364,13 @@ export const PRODUCTS: Product[] = [
     ],
     specs: {
       'Màn hình': '6.7 inch Super Retina XDR OLED',
-      'Chipset': 'Apple A15 Bionic (5 nhân GPU)',
+      'Chipset': 'Apple A15 Bionic',
       'Pin': '4325 mAh (Pin siêu trâu)',
       'Bảo hành Hiếu Apple': '💥 Lỗi 1 đổi 1 trong 3 tháng'
     }
   },
 
-  // 7. iPhone 13
+  // 8. iPhone 13
   {
     id: 'ip-13-128gb',
     name: 'iPhone 13 128GB (Chuẩn Zin 99%)',
@@ -372,7 +412,7 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 8. iPhone 12 Pro Max
+  // 9. iPhone 12 Pro Max
   {
     id: 'ip-12-pro-max',
     name: 'iPhone 12 Pro Max (Chuẩn Zin 99%)',
@@ -409,14 +449,14 @@ export const PRODUCTS: Product[] = [
       }
     ],
     specs: {
-      'Màn hình': '6.7 inch OLED Super Retina XDR (2778 x 1284 pixel)',
-      'Chipset': 'Apple A14 Bionic (5nm)',
+      'Màn hình': '6.7 inch OLED Super Retina XDR',
+      'Chipset': 'Apple A14 Bionic',
       'RAM': '6GB RAM',
       'Bảo hành Hiếu Apple': '💥 Lỗi 1 đổi 1 trong 3 tháng'
     }
   },
 
-  // 9. iPhone 12 Pro
+  // 10. iPhone 12 Pro
   {
     id: 'ip-12-pro',
     name: 'iPhone 12 Pro (Chuẩn Zin 99%)',
@@ -459,7 +499,7 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 10. iPhone 12
+  // 11. iPhone 12
   {
     id: 'ip-12-128gb',
     name: 'iPhone 12 128GB (Chuẩn Zin 99%)',
@@ -500,7 +540,7 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 11. iPhone 11 Pro Max
+  // 12. iPhone 11 Pro Max
   {
     id: 'ip-11-pro-max',
     name: 'iPhone 11 Pro Max (Chuẩn Zin 99%)',
@@ -539,12 +579,12 @@ export const PRODUCTS: Product[] = [
     specs: {
       'Màn hình': '6.5 inch OLED Super Retina XDR',
       'Chipset': 'Apple A13 Bionic',
-      'Pin': '3969 mAh (Dùng vút ngàn)',
+      'Pin': '3969 mAh',
       'Bảo hành Hiếu Apple': '💥 Lỗi 1 đổi 1 trong 3 tháng'
     }
   },
 
-  // 12. iPhone 11
+  // 13. iPhone 11
   {
     id: 'ip-11-128gb',
     name: 'iPhone 11 128GB (Chuẩn Zin 99%)',
@@ -648,7 +688,7 @@ export const PRODUCTS: Product[] = [
 export const REPAIR_SERVICES: RepairOption[] = [
   {
     id: 'rep-16pm-glass',
-    deviceModel: 'iPhone 16 Pro Max',
+    deviceModel: 'iPhone 16 Pro Max / 17 Pro Max',
     serviceType: 'ép kính',
     estimatedPrice: 1450000,
     durationMinutes: 45,
@@ -657,7 +697,7 @@ export const REPAIR_SERVICES: RepairOption[] = [
   },
   {
     id: 'rep-16pm-back',
-    deviceModel: 'iPhone 16 Pro Max',
+    deviceModel: 'iPhone 16 Pro Max / 17 Pro Max',
     serviceType: 'thay mặt lưng',
     estimatedPrice: 950000,
     durationMinutes: 40,
@@ -722,6 +762,16 @@ export const REPAIR_SERVICES: RepairOption[] = [
 
 export const TRADE_IN_DATA: TradeInOption[] = [
   {
+    id: 'trade-16pm',
+    deviceModel: 'iPhone 16 Pro Max 256GB',
+    conditions: [
+      { grade: 'Đẹp 99%', estimatedValue: 22000000 },
+      { grade: 'Trầy xước nhẹ (97-98%)', estimatedValue: 20500000 },
+      { grade: 'Vỡ kính/Thay màn', estimatedValue: 17500000 },
+      { grade: 'Hỏng FaceID / Mất vân', estimatedValue: 15000000 }
+    ]
+  },
+  {
     id: 'trade-15pm',
     deviceModel: 'iPhone 15 Pro Max 256GB',
     conditions: [
@@ -760,16 +810,6 @@ export const TRADE_IN_DATA: TradeInOption[] = [
       { grade: 'Vỡ kính/Thay màn', estimatedValue: 6000000 },
       { grade: 'Hỏng FaceID / Mất vân', estimatedValue: 4800000 }
     ]
-  },
-  {
-    id: 'trade-11pm',
-    deviceModel: 'iPhone 11 Pro Max 64GB',
-    conditions: [
-      { grade: 'Đẹp 99%', estimatedValue: 6200000 },
-      { grade: 'Trầy xước nhẹ (97-98%)', estimatedValue: 5300000 },
-      { grade: 'Vỡ kính/Thay màn', estimatedValue: 4000000 },
-      { grade: 'Hỏng FaceID / Mất vân', estimatedValue: 3200000 }
-    ]
   }
 ];
 
@@ -778,7 +818,7 @@ export const ICLOUD_SERVICES: IcloudServiceOption[] = [
     id: 'ic-clean',
     name: 'Mở Khóa iCloud Chính Chủ (Clean IMEI Server)',
     description: 'Giải pháp xóa tài khoản iCloud ẩn/quên mật khẩu cho máy clean chính chủ. Tháo sạch 100% trên hệ thống Server Apple, không đụng chạm phần cứng.',
-    supportedModels: 'Hỗ trợ từ iPhone XR đến iPhone 16 Pro Max, iPad, Apple Watch',
+    supportedModels: 'Hỗ trợ từ iPhone XR đến iPhone 17 Pro Max, iPad, Apple Watch',
     timeframe: '1 - 3 Ngày làm việc',
     priceRange: 'Từ 1.200.000đ - 3.500.000đ (Tùy model & trạng thái IMEI)',
     guarantee: 'Cam kết thành công 100%, không thành công hoàn tiền 100%'
