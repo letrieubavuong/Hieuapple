@@ -15,8 +15,10 @@ export const IPhoneImage: React.FC<IPhoneImageProps> = ({
   className = 'w-full h-full',
   view = 'back',
 }) => {
-  // Determine layout style based on model ID
+  const is17ProMax = modelId.includes('17-pro-max');
+  
   const isProSeries =
+    is17ProMax ||
     modelId.includes('pro') ||
     modelId.includes('16-pro-max') ||
     modelId.includes('15-pro-max') ||
@@ -26,6 +28,7 @@ export const IPhoneImage: React.FC<IPhoneImageProps> = ({
     modelId.includes('11-pro-max');
 
   const isDynamicIsland =
+    modelId.includes('17') ||
     modelId.includes('16') ||
     modelId.includes('15') ||
     modelId.includes('14-pro');
@@ -40,7 +43,13 @@ export const IPhoneImage: React.FC<IPhoneImageProps> = ({
   // Gradient colors for titanium / metallic back glass finishes
   const getFinishGradients = (code: string) => {
     switch (code.toLowerCase()) {
-      case '#c2a88f': // Desert Titanium
+      case '#cbb197': // Titan Sa Mạc Thẫm 17 Pro Max (Desert Gold)
+        return { bg: '#c9b197', highlight: '#f7ebd9', shadow: '#7e644a', ring: '#dfcbb5' };
+      case '#7d898c': // Titan Xanh Xám 17 Pro Max (Titanium Gray)
+        return { bg: '#727e81', highlight: '#afbcc0', shadow: '#434c4f', ring: '#9aa7ab' };
+      case '#222327': // Titan Đen Vũ Trụ 17 Pro Max (Space Black)
+        return { bg: '#1d1e21', highlight: '#41444b', shadow: '#0c0c0e', ring: '#363940' };
+      case '#c2a88f': // Desert Titanium 16 Pro Max
         return { bg: '#d4bc9f', highlight: '#f3e5d8', shadow: '#967d64', ring: '#e8d4c0' };
       case '#9f9d96': // Natural Titanium
         return { bg: '#adab9f', highlight: '#d5d3c8', shadow: '#767469', ring: '#c5c3b8' };
@@ -87,15 +96,15 @@ export const IPhoneImage: React.FC<IPhoneImageProps> = ({
 
           {/* Camera Module Glass Gradient */}
           <linearGradient id={`camBumpGrad-${modelId}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor={finish.highlight} stopOpacity="0.8" />
-            <stop offset="100%" stopColor={finish.bg} stopOpacity="0.4" />
+            <stop offset="0%" stopColor={finish.highlight} stopOpacity="0.85" />
+            <stop offset="100%" stopColor={finish.bg} stopOpacity="0.5" />
           </linearGradient>
 
           {/* Metallic Lens Bezel Gradient */}
           <linearGradient id={`bezelGrad-${modelId}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.6" />
+            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.7" />
             <stop offset="50%" stopColor={finish.ring} />
-            <stop offset="100%" stopColor="#111111" />
+            <stop offset="100%" stopColor="#0f172a" />
           </linearGradient>
 
           {/* Lens Glass Reflection */}
@@ -108,7 +117,7 @@ export const IPhoneImage: React.FC<IPhoneImageProps> = ({
 
           {/* Apple Logo Gradient */}
           <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.35" />
+            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.4" />
             <stop offset="100%" stopColor="#000000" stopOpacity="0.25" />
           </linearGradient>
         </defs>
@@ -125,7 +134,7 @@ export const IPhoneImage: React.FC<IPhoneImageProps> = ({
           filter="blur(10px)"
         />
 
-        {/* Outer Outer Frame / Bezel */}
+        {/* Outer Frame / Metallic Bezel */}
         <rect
           x="20"
           y="20"
@@ -172,10 +181,57 @@ export const IPhoneImage: React.FC<IPhoneImageProps> = ({
 
         {/* ---------------- CAMERA MODULE BUMP STYLES ---------------- */}
 
-        {/* 1. TRIPLE CAMERA PRO LAYOUT (16 Pro Max, 15 Pro Max, 14 Pro Max, 12 Pro Max, 11 Pro Max) */}
-        {isProSeries && (
+        {/* SPECIAL IPHONE 17 PRO MAX CAMERA ISLAND */}
+        {is17ProMax && (
           <g>
-            {/* Glossy Rounded Square Glass Plateau */}
+            {/* Sleek Horizontal-extended Pro Camera Island */}
+            <rect
+              x="36"
+              y="36"
+              width="112"
+              height="112"
+              rx="30"
+              fill={`url(#camBumpGrad-${modelId})`}
+              stroke="white"
+              strokeOpacity="0.4"
+              strokeWidth="1.2"
+              filter="drop-shadow(0px 6px 14px rgba(0,0,0,0.3))"
+            />
+
+            {/* Lens 1: Top Left Main Fusion 48MP Camera */}
+            <circle cx="68" cy="68" r="23" fill={`url(#bezelGrad-${modelId})`} />
+            <circle cx="68" cy="68" r="20" fill="url(#lensReflect)" stroke="#3b82f6" strokeWidth="1" />
+            <circle cx="68" cy="68" r="9" fill="#020617" />
+            <circle cx="65" cy="65" r="3.5" fill="white" fillOpacity="0.8" />
+
+            {/* Lens 2: Bottom Left Periscope 10x Optical Zoom */}
+            <circle cx="68" cy="116" r="23" fill={`url(#bezelGrad-${modelId})`} />
+            <circle cx="68" cy="116" r="20" fill="url(#lensReflect)" stroke="#38bdf8" strokeWidth="1" />
+            <circle cx="68" cy="116" r="9" fill="#020617" />
+            <circle cx="65" cy="113" r="3.5" fill="white" fillOpacity="0.8" />
+
+            {/* Lens 3: Right UltraWide 48MP Lens */}
+            <circle cx="118" cy="92" r="23" fill={`url(#bezelGrad-${modelId})`} />
+            <circle cx="118" cy="92" r="20" fill="url(#lensReflect)" stroke="#6366f1" strokeWidth="1" />
+            <circle cx="118" cy="92" r="9" fill="#020617" />
+            <circle cx="115" cy="89" r="3.5" fill="white" fillOpacity="0.8" />
+
+            {/* Quad LED True Tone Flash */}
+            <circle cx="118" cy="58" r="8" fill="#fef08a" stroke="#eab308" strokeWidth="1" />
+            <circle cx="118" cy="58" r="4" fill="#ffffff" />
+
+            {/* LiDAR 3D Sensor Gen 2 */}
+            <circle cx="118" cy="126" r="7.5" fill="#0f172a" stroke="#475569" strokeWidth="1" />
+            <circle cx="118" cy="126" r="5" fill="#020617" />
+
+            {/* Microphones */}
+            <circle cx="96" cy="126" r="2.5" fill="#000000" opacity="0.7" />
+          </g>
+        )}
+
+        {/* REGULAR TRIPLE CAMERA PRO LAYOUT (16 Pro Max, 15 Pro Max, 14 Pro Max, 12 Pro Max, 11 Pro Max) */}
+        {isProSeries && !is17ProMax && (
+          <g>
             <rect
               x="38"
               y="38"
@@ -189,19 +245,19 @@ export const IPhoneImage: React.FC<IPhoneImageProps> = ({
               filter="drop-shadow(0px 4px 10px rgba(0,0,0,0.25))"
             />
 
-            {/* Lens 1: Top Left Main Camera */}
+            {/* Lens 1: Top Left */}
             <circle cx="68" cy="68" r="22" fill={`url(#bezelGrad-${modelId})`} />
             <circle cx="68" cy="68" r="19" fill="url(#lensReflect)" stroke="#334155" strokeWidth="1.5" />
             <circle cx="68" cy="68" r="9" fill="#020617" />
             <circle cx="65" cy="65" r="3" fill="white" fillOpacity="0.7" />
 
-            {/* Lens 2: Bottom Left Telephoto / UltraWide Camera */}
+            {/* Lens 2: Bottom Left */}
             <circle cx="68" cy="114" r="22" fill={`url(#bezelGrad-${modelId})`} />
             <circle cx="68" cy="114" r="19" fill="url(#lensReflect)" stroke="#334155" strokeWidth="1.5" />
             <circle cx="68" cy="114" r="9" fill="#020617" />
             <circle cx="65" cy="111" r="3" fill="white" fillOpacity="0.7" />
 
-            {/* Lens 3: Middle Right Telephoto Camera */}
+            {/* Lens 3: Middle Right */}
             <circle cx="114" cy="91" r="22" fill={`url(#bezelGrad-${modelId})`} />
             <circle cx="114" cy="91" r="19" fill="url(#lensReflect)" stroke="#334155" strokeWidth="1.5" />
             <circle cx="114" cy="91" r="9" fill="#020617" />
@@ -211,7 +267,7 @@ export const IPhoneImage: React.FC<IPhoneImageProps> = ({
             <circle cx="114" cy="58" r="8" fill="#fef08a" stroke="#ca8a04" strokeWidth="1" />
             <circle cx="114" cy="58" r="4" fill="#ffffff" />
 
-            {/* LiDAR Scanner 3D Sensor */}
+            {/* LiDAR Scanner */}
             <circle cx="114" cy="124" r="7" fill="#0f172a" stroke="#334155" strokeWidth="1" />
             <circle cx="114" cy="124" r="5" fill="#020617" />
 
@@ -220,7 +276,7 @@ export const IPhoneImage: React.FC<IPhoneImageProps> = ({
           </g>
         )}
 
-        {/* 2. DIAGONAL DUAL CAMERA LAYOUT (iPhone 13, iPhone 14 Plus, iPhone 15 Standard) */}
+        {/* DIAGONAL DUAL CAMERA LAYOUT (iPhone 13, iPhone 14 Plus, iPhone 15 Standard) */}
         {!isProSeries && isDiagonalCamera && (
           <g>
             <rect
@@ -254,7 +310,7 @@ export const IPhoneImage: React.FC<IPhoneImageProps> = ({
           </g>
         )}
 
-        {/* 3. VERTICAL DUAL CAMERA LAYOUT (iPhone 11, iPhone 12) */}
+        {/* VERTICAL DUAL CAMERA LAYOUT (iPhone 11, iPhone 12) */}
         {!isProSeries && isVerticalCamera && (
           <g>
             <rect
@@ -283,20 +339,6 @@ export const IPhoneImage: React.FC<IPhoneImageProps> = ({
             <circle cx="98" cy="93" r="6" fill="#fef08a" />
           </g>
         )}
-
-        {/* Model Name Stamp Label on Frame */}
-        <text
-          x="140"
-          y="485"
-          textAnchor="middle"
-          fill={finish.highlight}
-          fillOpacity="0.4"
-          fontSize="10"
-          fontWeight="bold"
-          letterSpacing="1"
-        >
-          {colorName.toUpperCase()}
-        </text>
 
       </svg>
     </div>
