@@ -29,7 +29,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight sm:leading-none">
               <span className="block text-apple-gradient">HIẾU APPLE</span>
               <span className="text-xl sm:text-3xl font-bold text-gray-200 mt-2 block">
-                Bảng Giá iPhone Hàng 99 Chuẩn Zin Tham Khảo
+                Bảng Giá iPhone Hàng 99% Like New Chuẩn Zin Tham Khảo
               </span>
             </h1>
 
