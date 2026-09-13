@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Wrench, Clock, ShieldCheck, CheckCircle2, Calendar, Phone, User, MessageSquare, Sparkles } from 'lucide-react';
 import { REPAIR_SERVICES, STORE_INFO } from '../data/storeData';
+import { sendOrderNotification } from '../utils/notification';
 
 export const RepairCalculator: React.FC = () => {
   const deviceModels = [
@@ -48,9 +49,20 @@ export const RepairCalculator: React.FC = () => {
     notes: 'Linh kiện Zin chính hãng 100%. Quý khách được quan sát trực tiếp kỹ thuật viên thao tác.'
   };
 
-  const handleBooking = (e: React.FormEvent) => {
+  const handleBooking = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!customerPhone.trim()) return;
+
+    await sendOrderNotification({
+      type: 'REPAIR_BOOKING',
+      customerName,
+      customerPhone,
+      deviceModel: selectedModel,
+      serviceType: matchedService.serviceType,
+      estimatedPrice: matchedService.estimatedPrice,
+      notes: `${appointmentDate ? `Hẹn ngày: ${appointmentDate}. ` : ''}${notes}`,
+    });
+
     setBookingSubmitted(true);
   };
 
@@ -85,7 +97,7 @@ export const RepairCalculator: React.FC = () => {
 
               {/* Device Selector */}
               <div className="space-y-2">
-                <label className="text-xs font-bold text-gray-300 uppercase tracking-wider block">
+                <label className="text-xs sm:text-sm font-bold text-gray-200 uppercase tracking-wider block">
                   Dòng Máy iPhone:
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -93,7 +105,7 @@ export const RepairCalculator: React.FC = () => {
                     <button
                       key={model}
                       onClick={() => setSelectedModel(model)}
-                      className={`px-3 py-2.5 rounded-xl text-xs font-bold text-left border transition-all ${
+                      className={`px-3 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-left border transition-all ${
                         selectedModel === model
                           ? 'bg-blue-600/30 text-blue-400 border-blue-500 shadow-md shadow-blue-500/20'
                           : 'bg-white/5 text-gray-300 border-white/10 hover:bg-white/10'
@@ -107,7 +119,7 @@ export const RepairCalculator: React.FC = () => {
 
               {/* Service Type Selector */}
               <div className="space-y-2 pt-2">
-                <label className="text-xs font-bold text-gray-300 uppercase tracking-wider block">
+                <label className="text-xs sm:text-sm font-bold text-gray-200 uppercase tracking-wider block">
                   Dịch Vụ Sửa Chữa:
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -115,7 +127,7 @@ export const RepairCalculator: React.FC = () => {
                     <button
                       key={serv.id}
                       onClick={() => setSelectedService(serv.id)}
-                      className={`px-4 py-3 rounded-xl text-xs font-bold text-left flex items-center justify-between border transition-all ${
+                      className={`px-4 py-3 rounded-xl text-xs sm:text-sm font-bold text-left flex items-center justify-between border transition-all ${
                         selectedService === serv.id
                           ? 'bg-amber-500/20 text-amber-300 border-amber-500/50 shadow-md shadow-amber-500/20'
                           : 'bg-white/5 text-gray-300 border-white/10 hover:bg-white/10'
@@ -145,7 +157,7 @@ export const RepairCalculator: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 text-xs text-gray-300">
+                <div className="grid grid-cols-2 gap-4 text-xs sm:text-sm text-gray-300">
                   <div className="flex items-center gap-2">
                     <Clock className="w-4 h-4 text-blue-400" />
                     <span>Thời gian làm: <strong>{matchedService.durationMinutes} phút</strong></span>
@@ -156,7 +168,7 @@ export const RepairCalculator: React.FC = () => {
                   </div>
                 </div>
 
-                <p className="text-xs text-gray-400 italic">
+                <p className="text-xs text-gray-300 italic">
                   💡 Ghi chú kỹ thuật: {matchedService.notes}
                 </p>
               </div>
@@ -167,7 +179,7 @@ export const RepairCalculator: React.FC = () => {
           {/* Right Column: Online Booking Form */}
           <div className="lg:col-span-5">
             <div className="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 shadow-xl space-y-5 relative">
-              <div className="absolute -top-3 right-6 px-3 py-1 rounded-full bg-emerald-500 text-white font-extrabold text-[11px] uppercase shadow-md">
+              <div className="absolute -top-3 right-6 px-3 py-1 rounded-full bg-emerald-500 text-white font-extrabold text-xs uppercase shadow-md">
                 Giảm 10% khi đặt trước
               </div>
 
@@ -175,7 +187,7 @@ export const RepairCalculator: React.FC = () => {
                 <Calendar className="w-5 h-5 text-emerald-400" />
                 <span>2. Đặt Lịch Sửa Chữa Trực Tuyến</span>
               </h3>
-              <p className="text-xs text-gray-400">
+              <p className="text-xs sm:text-sm text-gray-300">
                 Điền thông tin đặt hẹn trước giúp Hiếu Apple chuẩn bị linh kiện zin sẵn sàng và tiết kiệm thời gian chờ đợi của bạn.
               </p>
 
@@ -185,20 +197,20 @@ export const RepairCalculator: React.FC = () => {
                     ✓
                   </div>
                   <h4 className="font-bold text-white text-base">Đặt Lịch Hẹn Thành Công!</h4>
-                  <p className="text-xs text-gray-300">
+                  <p className="text-xs sm:text-sm text-gray-300">
                     Cảm ơn <strong>{customerName || 'Quý khách'}</strong>! Nhân viên Hiếu Apple sẽ gọi lại xác nhận lịch hẹn trong ít phút nữa.
                   </p>
                   <button
                     onClick={() => setBookingSubmitted(false)}
-                    className="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-500"
+                    className="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs sm:text-sm font-bold hover:bg-emerald-500"
                   >
                     Đặt Lịch Hẹn Khác
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleBooking} className="space-y-4 text-xs">
+                <form onSubmit={handleBooking} className="space-y-4 text-xs sm:text-sm">
                   <div>
-                    <label className="text-gray-300 font-semibold block mb-1">Họ & Tên khách hàng:</label>
+                    <label className="text-gray-200 font-semibold block mb-1">Họ & Tên khách hàng:</label>
                     <div className="relative">
                       <input
                         type="text"
@@ -206,14 +218,14 @@ export const RepairCalculator: React.FC = () => {
                         placeholder="Nhập họ và tên..."
                         value={customerName}
                         onChange={(e) => setCustomerName(e.target.value)}
-                        className="w-full bg-[#16181d] text-gray-200 rounded-xl pl-9 pr-3 py-2.5 border border-white/15 focus:outline-none focus:border-emerald-500"
+                        className="w-full bg-[#16181d] text-gray-200 rounded-xl pl-9 pr-3 py-3 border border-white/15 focus:outline-none focus:border-emerald-500 text-xs sm:text-sm"
                       />
-                      <User className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
+                      <User className="w-4 h-4 text-gray-400 absolute left-3 top-3.5" />
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-gray-300 font-semibold block mb-1">Số điện thoại liên hệ (*):</label>
+                    <label className="text-gray-200 font-semibold block mb-1">Số điện thoại liên hệ (*):</label>
                     <div className="relative">
                       <input
                         type="tel"
@@ -221,41 +233,41 @@ export const RepairCalculator: React.FC = () => {
                         placeholder="Nhập số điện thoại..."
                         value={customerPhone}
                         onChange={(e) => setCustomerPhone(e.target.value)}
-                        className="w-full bg-[#16181d] text-gray-200 rounded-xl pl-9 pr-3 py-2.5 border border-white/15 focus:outline-none focus:border-emerald-500"
+                        className="w-full bg-[#16181d] text-gray-200 rounded-xl pl-9 pr-3 py-3 border border-white/15 focus:outline-none focus:border-emerald-500 text-xs sm:text-sm"
                       />
-                      <Phone className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
+                      <Phone className="w-4 h-4 text-gray-400 absolute left-3 top-3.5" />
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-gray-300 font-semibold block mb-1">Thời gian dự kiến mang máy đến:</label>
+                    <label className="text-gray-200 font-semibold block mb-1">Thời gian dự kiến mang máy đến:</label>
                     <input
                       type="datetime-local"
                       value={appointmentDate}
                       onChange={(e) => setAppointmentDate(e.target.value)}
-                      className="w-full bg-[#16181d] text-gray-200 rounded-xl px-3 py-2.5 border border-white/15 focus:outline-none focus:border-emerald-500"
+                      className="w-full bg-[#16181d] text-gray-200 rounded-xl px-3 py-3 border border-white/15 focus:outline-none focus:border-emerald-500 text-xs sm:text-sm"
                     />
                   </div>
 
                   <div>
-                    <label className="text-gray-300 font-semibold block mb-1">Ghi chú thêm về máy (Ví dụ: vỡ góc màn, chai pin 75%...):</label>
+                    <label className="text-gray-200 font-semibold block mb-1">Ghi chú thêm về máy (Ví dụ: vỡ góc màn, chai pin 75%...):</label>
                     <textarea
                       rows={2}
                       placeholder="Mô tả tình trạng hỏng..."
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
-                      className="w-full bg-[#16181d] text-gray-200 rounded-xl px-3 py-2 border border-white/15 focus:outline-none focus:border-emerald-500"
+                      className="w-full bg-[#16181d] text-gray-200 rounded-xl px-3 py-2.5 border border-white/15 focus:outline-none focus:border-emerald-500 text-xs sm:text-sm"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-sm shadow-lg shadow-emerald-600/30 transition-all active:scale-95 flex items-center justify-center gap-2"
+                    className="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-emerald-600/30 transition-all active:scale-95 flex items-center justify-center gap-2"
                   >
                     <span>Xác Nhận Đặt Lịch Ưu Đãi 10%</span>
                   </button>
 
-                  <p className="text-[11px] text-gray-400 text-center">
+                  <p className="text-xs text-gray-400 text-center">
                     Hoặc liên hệ nhanh qua Hotline 24/7: <a href={`tel:${STORE_INFO.hotline}`} className="text-emerald-400 font-bold">{STORE_INFO.hotlineFormatted}</a>
                   </p>
                 </form>

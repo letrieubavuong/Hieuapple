@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, CheckCircle2, ShieldCheck, Truck, CreditCard, Phone, User, MapPin } from 'lucide-react';
 import { CartItem } from '../types';
 import { STORE_INFO } from '../data/storeData';
+import { sendOrderNotification } from '../utils/notification';
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -30,12 +31,29 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
     0
   );
 
-  const handleSubmitOrder = (e: React.FormEvent) => {
+  const handleSubmitOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!phone.trim() || !name.trim()) return;
 
     const generatedId = 'HA-' + Math.floor(100000 + Math.random() * 900000);
     setOrderId(generatedId);
+
+    // Gửi thông báo đến Telegram / Webhook của chủ cửa hàng Hiếu Apple
+    const itemDetails = cartItems.map(
+      (item) => `• ${item.product.name} (${item.selectedColor.name}${item.selectedStorage ? `, ${item.selectedStorage}` : ''}) x${item.quantity} - ${(item.calculatedPrice * item.quantity).toLocaleString('vi-VN')}đ`
+    );
+
+    await sendOrderNotification({
+      type: 'ORDER',
+      orderId: generatedId,
+      customerName: name,
+      customerPhone: phone,
+      address,
+      paymentMethod,
+      items: itemDetails,
+      totalPrice,
+    });
+
     setOrderComplete(true);
     onClearCart();
   };
